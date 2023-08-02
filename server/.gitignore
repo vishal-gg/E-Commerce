@@ -13,7 +13,7 @@ dist-ssr
 *.local
 .env
 
-serviceAccount.json
+# serviceAccount.json
 
 # Editor directories and files
 .vscode/*
