@@ -21,10 +21,18 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  model: {
+    type: String,
+    required: true
+  },
+  color: {
+    type: String,
+  },
   category: {
     type: String,
     required: true
   },
+  popular: Boolean,
   onSale: Boolean,
   discount: Number,
 }, {

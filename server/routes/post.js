@@ -7,7 +7,7 @@ const Product = require('../models/products');
 router.post('/', upload.single('image'), uploadToFirebase, async (req, res) => {
 
 try {
-    const {title, price, description, brand, category, onSale, discount } = req.body;
+    const {title, price, description, brand, model, color, category, popular, onSale, discount } = req.body;
     
     const dbPayload = {
       title,
@@ -15,9 +15,12 @@ try {
       price,
       description,
       brand,
+      model,
       category
     }
-  
+    
+    if(color) dbPayload.color = color
+    if(popular) dbPayload.popular = popular
     if(onSale) dbPayload.onSale = onSale;
     if(discount) dbPayload.discount = discount;
   
