@@ -1,4 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* skelaton animation for product loading screen */
+.animateLoading {
+    animation: animateImageLoading ease-in-out 1s infinite;
+    scale: 1.5;
+}
+
+@keyframes animateImageLoading {
+    from {
+        transform: translateX(-130%);
+    }
+    to {
+        transform: translateX(130%);
+    }
+}
+
+/* custom scrollbar for search component */
+.searchScrollBar::-webkit-scrollbar {
+    width: 2px;
+}
+
+.searchScrollBar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.searchScrollBar::-webkit-scrollbar-thumb {
+    background-color: #ffffff9a;
+    border-radius: 20px;
+}
+
+body::-webkit-scrollbar {
+    width: 5px;
+}
+
+body::-webkit-scrollbar-track, 
+.productDetailScrollBar::-webkit-scrollbar {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: #00000060;
+}
+body::-webkit-scrollbar-thumb:hover {
+    background-color: #00000080;
+}
+
+.swiper-button-next::after, .swiper-button-prev::after {
+    content: none !important;
+}

@@ -6,10 +6,14 @@ const PORT = process.env.PORT || 5000
 const dotenv = require('dotenv')
 dotenv.config()
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 const color = require('cli-colors')
 
-const uploadRouter = require('./routes/post')
-const getRouter = require('./routes/get')
+const userRouter = require('./routes/user')
+const uploadRouter = require('./routes/add_Products')
+const getRouter = require('./routes/get_Products')
+const cartRouter = require('./routes/cart')
+const stripeRouter = require('./routes/stripePayment')
 const {notFound, errorHandler} = require('./middleware/errorMiddleware')
 
 //connection request
@@ -18,8 +22,7 @@ connectDb()
 //neccessary middleware
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-
-
+app.use(cookieParser())
 app.use(cors({
     origin: ["http://localhost:5173", `${process.env.ADMIN_LOGIN}`]
 }));
@@ -29,8 +32,11 @@ app.get("/", (req, res) => {
     res.send('server is running')
 });
 
+app.use('/api/users', userRouter)
 app.use('/upload', uploadRouter)
 app.use('/get', getRouter)
+app.use('/', cartRouter)
+app.use('/', stripeRouter)
 
 //error middleware
 app.use(notFound)

@@ -4,8 +4,14 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        '1180': '1180px',
+        '378' : '378px',
+      }
+    },
   },
   plugins: [],
 }

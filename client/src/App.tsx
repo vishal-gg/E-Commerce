@@ -1,51 +1,70 @@
-import { useReducer } from "react";
+import { useEffect } from "react";
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import Home from "./components/Home";
+import { fetchProducts } from "./features/getProducts";
+import { useAppDispatch, useAppSelector } from "./types/storeType";
+import { CategoryProvider } from "./hooks/CategoryContext";
+import Cart from "./components/Cart";
+import ConditionalRoute from "./components/ConditionalRoute";
+import ProfileScreen from "./components/Profile";
+import { Toaster } from "react-hot-toast";
+import { getUserCart, syncCartItem } from "./features/cartSlice";
+import { DetailProvider } from "./hooks/DetailContext";
+import PaymentSuccess from "./components/PaymentSuccess";
+import PaymentFailed from "./components/PaymentFailed";
 
-interface actionType {
-    type: string;
-    payload: string;
-}
+const App = () => {
+  const dispatch = useAppDispatch();
+  const { products } = useAppSelector((state) => state.Products);
+  const { userInfo } = useAppSelector((state) => state.Authentication);
+  const navigate = useNavigate();
 
-interface stateType {
-    name: string;
-    age: number;
-    mood: string;
-}
+  useEffect(() => {
+    if (!products) {
+      dispatch(fetchProducts());
+    }
+    async function fetchUserCart() {
+      if (userInfo) {
+        let localCart = localStorage.getItem("cart");
+        let cartItems = localCart && JSON.parse(localCart);
+        localCart &&
+          (await dispatch(syncCartItem({ userId: userInfo?._id, cartItems })));
+        dispatch(getUserCart(userInfo?._id));
+        localStorage.removeItem("cart");
+      }
+    }
+    fetchUserCart();
+  }, [userInfo]);
 
-const initialState = {
-    name: 'ajit',
-    age: 21, 
-    mood: 'horny'
-}
+  const location = useLocation();
+  const isCartPage = location.pathname === "/cart";
 
-const reducer = (state:stateType, action:actionType) => {
-    
- switch (action.type) {
-   case 'change_name':
-     return { ...state, name: state.name = action.payload };
-   case 'change_age':
-     return { ...state, age: state.age = 22 };
-   case 'change_mood':
-     return { ...state, mood: state.mood = 'happy' };
-   default:
-     return state;
- }
- 
-}
-
-const App = () =>  {
-
-    const [state, dispatch] = useReducer(reducer, initialState);
-    
-    return (
-        <div>
-            <h1 className="text-red-400">name: {state.name}</h1>
-            <h1>age: {state.age}</h1>
-            <h1>mood: {state.mood}</h1>
-            <button onClick={()=> dispatch({type: 'change_name', payload: 'vishal'})}>name</button>
-            <button onClick={()=> dispatch({type: 'change_age', payload: ''})}>age</button>
-            <button onClick={()=> dispatch({type: 'change_mood', payload: ''})}>mood</button>
+  return (
+    <CategoryProvider>
+      <DetailProvider>
+        <div className={`${isCartPage ? 'pl-0' : 'pl-40 max-[578px]:pl-0'} pt-16`}>
+          <Header />
+          {!isCartPage && <Sidebar />}
+          <Toaster />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="" element={<ConditionalRoute isProtected={true} />}>
+              <Route path="/profile" element={<ProfileScreen />} />
+            </Route>
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/payment-success" element={<PaymentSuccess />} />
+            <Route path="/payment-failed" element={<PaymentFailed />} />
+            <Route
+              path="/*"
+              element={<h1 className="fixed inset-0 bg-black z-50 text-white grid place-content-center text-3xl font-semibold top-16">Not Found - {window.location.pathname} <button onClick={() => navigate('/', {replace: true})} className="text-xl font-medium text-blue-500">Go to Homepage</button></h1>}
+            />
+          </Routes>
         </div>
-    )
-}
+      </DetailProvider>
+    </CategoryProvider>
+  );
+};
 
 export default App;
