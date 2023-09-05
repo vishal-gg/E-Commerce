@@ -213,7 +213,7 @@ const Cart = () => {
   return (
     <>
       <div className="w-[min(100%-4rem,1152px)] mx-auto min-h-screen">
-        <div className="p-8 mb-5 sticky top-16 shadow-sm backdrop-blur-md bg-[#dddddd2f]">
+        <div className="p-8 mb-5 sticky top-16 shadow-sm backdrop-blur-md bg-[#dddddd2f] dark:bg-black/40 dark:text-white">
           <h1 className="flex sm:items-end items-start gap-1 sm:flex-row flex-col text-3xl font-medium">
             Shopping cart
             <span className="font-medium text-sm mb-[3px] ">
@@ -223,7 +223,7 @@ const Cart = () => {
 
           {items.length > 0 && (
             <button
-              className="flex items-center gap-1 self-start ml-5 mt-5 border px-2 py-1 text-sm text-slate-600 font-medium hover:border-black/30 rounded-md group transition-colors absolute right-5 bottom-2"
+              className="flex items-center gap-1 self-start ml-5 mt-5 border px-2 py-1 text-sm text-slate-600 font-medium hover:border-black/30 rounded-md group transition-colors absolute right-5 bottom-2 dark:text-white dark:border-white/20 dark:hover:border-white/40"
               onClick={() => navigate("/")}
             >
               <svg
@@ -251,7 +251,7 @@ const Cart = () => {
                 items.map((cartItem, i) => (
                   <div
                     key={i}
-                    className="bg-white shadow-md mb-3 flex max-[1020px]:flex-col gap-3 py-3 px-5"
+                    className="bg-white dark:bg-black/20 dark:text-white shadow-md mb-3 flex max-[1020px]:flex-col gap-3 py-3 px-5"
                   >
                     <div
                       className="h-[200px] w-[200px] min-h-fit min-w-fit cursor-pointer"
@@ -407,8 +407,8 @@ const Cart = () => {
               )}
             </div>
             {!loading && (
-              <div className="flex-1 flex-grow h-fit bg-[#dddddd2f] shadow-md sticky top-[185px] p-5 max-[920px]:mb-10">
-                <div className="text-center font-semibold text-xl pb-3 border-b">
+              <div className="flex-1 flex-grow h-fit bg-[#dddddd2f] dark:bg-black/20 dark:text-white shadow-md sticky top-[185px] p-5 max-[920px]:mb-10">
+                <div className="text-center font-semibold text-xl pb-3 border-b dark:border-white/30">
                   <span>Order Summary</span>
                 </div>
                 <div className="flex mt-3 text-sm">
@@ -424,7 +424,7 @@ const Cart = () => {
                   </div>
                 </div>
                 <div className="flex my-2 py-1 relative">
-                  <div className="absolute h-[1px] w-full top-0 left-0 from-transparent via-black/20 to-transparent bg-gradient-to-r"></div>
+                  <div className="absolute h-[1px] w-full top-0 left-0 from-transparent via-black/20 dark:via-white/30 to-transparent bg-gradient-to-r"></div>
                   <span className="flex-1 text-xl font-medium">Subtotal: </span>
                   <span className="flex-1 text-xl font-medium">
                     ${subtotal}
@@ -432,7 +432,7 @@ const Cart = () => {
                 </div>
                 <div>
                   <button
-                    className="text-sm bg-slate-700 text-white p-2 rounded-md hover:bg-slate-800 transition-colors"
+                    className="text-sm bg-slate-700 dark:bg-red-500 dark:hover:bg-red-600 text-white p-2 rounded-md hover:bg-slate-800 transition-colors"
                     onClick={handleCheckout}
                   >
                     procced to pay
@@ -643,7 +643,7 @@ const Cart = () => {
                 </g>
               </g>
             </svg>
-            <h1 className="text-2xl font-medium -mt-5">your cart is empty</h1>
+            <h1 className="text-2xl font-medium -mt-5 dark:text-white">your cart is empty</h1>
             <button
               className="flex items-center gap-1 self-start ml-5 mt-5 border px-2 py-[5px] bg-slate-800 hover:bg-slate-900 text-sm text-white rounded-md group transition-colors"
               onClick={() => navigate("/")}

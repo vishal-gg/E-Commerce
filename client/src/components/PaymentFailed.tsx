@@ -53,7 +53,7 @@ const PaymentFailed = () => {
     <>
       <div className="fixed inset-0 top-16 backdrop-blur-3xl z-30 flex flex-col justify-center items-center">
         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-xs font-medium flex flex-col items-center">
-          <span className="text-gray-500">All rights reserved.</span>
+          <span className="text-gray-500 dark:text-white/50">All rights reserved.</span>
           <div className="flex gap-1">
             <span>💌</span>
           </div>
@@ -83,12 +83,12 @@ const PaymentFailed = () => {
                   >
                     <stop
                       offset="0"
-                      stop-color="#ffca4f"
+                      stopColor="#ffca4f"
                       className="stopColorffca4f svgShape"
                     ></stop>
                     <stop
                       offset="1"
-                      stop-color="#f7ae30"
+                      stopColor="#f7ae30"
                       className="stopColorf7ae30 svgShape"
                     ></stop>
                   </linearGradient>
@@ -119,12 +119,12 @@ const PaymentFailed = () => {
                   >
                     <stop
                       offset="0"
-                      stop-color="#3f4c56"
+                      stopColor="#3f4c56"
                       className="stopColor3f4c56 svgShape"
                     ></stop>
                     <stop
                       offset="1"
-                      stop-color="#27333e"
+                      stopColor="#27333e"
                       className="stopColor27333e svgShape"
                     ></stop>
                   </linearGradient>
@@ -139,13 +139,13 @@ const PaymentFailed = () => {
                   >
                     <stop
                       offset="0"
-                      stop-color="#ffca4f"
-                      stop-opacity="0"
+                      stopColor="#ffca4f"
+                      stopOpacity="0"
                       className="stopColorffca4f svgShape"
                     ></stop>
                     <stop
                       offset="1"
-                      stop-color="#f4901f"
+                      stopColor="#f4901f"
                       className="stopColorf4901f svgShape"
                     ></stop>
                   </linearGradient>

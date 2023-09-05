@@ -135,10 +135,37 @@ const removeFromCart = async (req, res) => {
   }
 };
 
+const removeAllFromCart = async (req, res) => {
+  try {
+    const { userId } = req.body;
+    if (!userId) {
+      throw new Error("User ID is required");
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    // Remove all products from the user's cart
+    user.cart = [];
+
+    await user.save();
+
+    res
+      .status(200)
+      .json({ message: "All products removed successfully from the cart" });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
+
 module.exports = {
   addToCart,
   getCartItems,
   updateProductQuantity,
   syncCart,
   removeFromCart,
+  removeAllFromCart
 };

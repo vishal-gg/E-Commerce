@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Confetti from "react-confetti";
 import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
+import { useAppSelector, useAppDispatch } from "../types/storeType";
+import { removeAllCartItem } from "../features/cartSlice";
 
 const PaymentSuccess = () => {
   const navigate = useNavigate();
@@ -18,6 +20,10 @@ const PaymentSuccess = () => {
     },
   };
 
+  const dispatch = useAppDispatch();
+  const { userInfo } = useAppSelector((state) => state.Authentication);
+  const { items } = useAppSelector((state) => state.Cart);
+
   useEffect(() => {
     let timer;
     timer = setTimeout(() => {
@@ -25,6 +31,18 @@ const PaymentSuccess = () => {
     }, 1500);
     return () => clearTimeout(timer!!);
   }, []);
+
+  useEffect(() => {
+    if (userInfo) {
+      if (items.length > 0) {
+        dispatch(
+          removeAllCartItem({
+            userId: userInfo?._id,
+          })
+        )
+      }
+    }
+  }, [items.length]);
 
   const containerVarient = {
     hidden: {},
@@ -54,11 +72,11 @@ const PaymentSuccess = () => {
     <>
       <div className="fixed inset-0 top-16 backdrop-blur-3xl z-30 flex flex-col justify-center items-center">
         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-xs font-medium flex flex-col items-center">
-          <span className="text-gray-500">All rights reserved.</span>
+          <span className="text-gray-500 dark:text-white/50">All rights reserved.</span>
           <div className="flex gap-1">
             <span>💌</span>
           </div>
-          </div>
+        </div>
         <Confetti
           style={{ width: "100vw", height: "100vh" }}
           opacity={loading ? 0 : 1}
@@ -67,9 +85,10 @@ const PaymentSuccess = () => {
         />
         {!loading ? (
           <motion.div
-          initial={{opacity: 0, scale: 1.5}}
-          animate={{opacity: 1, scale: 1}}
-          className="flex flex-col gap-2 items-center py-8 px-28 bg-zinc-100 rounded-md shadow-md">
+            initial={{ opacity: 0, scale: 1.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="flex flex-col gap-2 items-center py-8 px-28 bg-zinc-100 rounded-md shadow-md"
+          >
             <div className="relative w-fit">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -89,12 +108,12 @@ const PaymentSuccess = () => {
                   >
                     <stop
                       offset="0"
-                      stop-color="#ffca4f"
+                      stopColor="#ffca4f"
                       className="stopColorffca4f svgShape"
                     ></stop>
                     <stop
                       offset="1"
-                      stop-color="#f7ae30"
+                      stopColor="#f7ae30"
                       className="stopColorf7ae30 svgShape"
                     ></stop>
                   </linearGradient>
@@ -125,12 +144,12 @@ const PaymentSuccess = () => {
                   >
                     <stop
                       offset="0"
-                      stop-color="#3f4c56"
+                      stopColor="#3f4c56"
                       className="stopColor3f4c56 svgShape"
                     ></stop>
                     <stop
                       offset="1"
-                      stop-color="#27333e"
+                      stopColor="#27333e"
                       className="stopColor27333e svgShape"
                     ></stop>
                   </linearGradient>
@@ -145,13 +164,13 @@ const PaymentSuccess = () => {
                   >
                     <stop
                       offset="0"
-                      stop-color="#ffca4f"
-                      stop-opacity="0"
+                      stopColor="#ffca4f"
+                      stopOpacity="0"
                       className="stopColorffca4f svgShape"
                     ></stop>
                     <stop
                       offset="1"
-                      stop-color="#f4901f"
+                      stopColor="#f4901f"
                       className="stopColorf4901f svgShape"
                     ></stop>
                   </linearGradient>
@@ -202,7 +221,9 @@ const PaymentSuccess = () => {
               <h1 className="text-4xl font-bold text-slate-800">
                 Thanks for your Order
               </h1>
-              <p className="text-sm font-medium text-gray-500">Your order #12345678 has been successfully placed.</p>
+              <p className="text-sm font-medium text-gray-500">
+                Your order #12345678 has been successfully placed.
+              </p>
               <button
                 className="mx-auto mt-5 flex items-center justify-center gap-1 px-2 py-1 bg-red-500 hover:bg-red-600 text-sm text-white rounded-md group transition-colors"
                 onClick={() => navigate("/", { replace: true })}
@@ -237,17 +258,17 @@ const PaymentSuccess = () => {
               <motion.span
                 variants={childrenVariants}
                 transition={childrenTransition}
-                className="h-3 w-3 rounded-full bg-black"
+                className="h-3 w-3 rounded-full bg-black dark:bg-white"
               ></motion.span>
               <motion.span
                 variants={childrenVariants}
                 transition={childrenTransition}
-                className="h-3 w-3 rounded-full bg-black"
+                className="h-3 w-3 rounded-full bg-black dark:bg-white"
               ></motion.span>
               <motion.span
                 variants={childrenVariants}
                 transition={childrenTransition}
-                className="h-3 w-3 rounded-full bg-black"
+                className="h-3 w-3 rounded-full bg-black dark:bg-white"
               ></motion.span>
             </motion.div>
           </div>

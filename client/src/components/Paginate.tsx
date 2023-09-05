@@ -32,11 +32,11 @@ function Paginate({
         <div
           className="col-span-full text-center py-10 mt-5 border-red relative"
         >
-          <span className="absolute h-[1px] w-full top-0 left-0 from-transparent via-black/20 to-transparent bg-gradient-to-r"></span>
+          <span className="absolute h-[1px] w-full top-0 left-0 from-transparent via-black/20 dark:via-white/20 to-transparent bg-gradient-to-r"></span>
           <button
             className={`${
               currentPage === 1 && "opacity-0"
-            } text-sm font-medium mr-8 px-3 py-1 outline outline-[1px] outline-black/20 hover:outline-black rounded-[4px] group relative`}
+            } text-sm font-medium mr-8 px-3 py-1 outline outline-[1px] outline-black/20 hover:outline-black dark:hover:outline-white/50 dark:outline-white/20 rounded-[4px] group relative`}
             disabled={currentPage === 1}
           >
             <svg
@@ -64,7 +64,7 @@ function Paginate({
           {pageNumbers.map((number, i) => (
             <Link
               onClick={() => pagination(number)}
-              className={`hover:outline outline-black/20 outline-[1px] -outline-offset-1 rounded-[4px] p-2 mx-1 cursor-pointer bg-${
+              className={`hover:outline outline-black/20 outline-[1px] dark:hover:outline-white/50 -outline-offset-1 rounded-[4px] p-2 mx-1 cursor-pointer bg-${
                 currentPage === ++i ? "black text-white" : "none"
               }`}
               to="product_list"
@@ -78,7 +78,7 @@ function Paginate({
           <button
             className={`${
               currentPage === pageNumbers.length && "opacity-0"
-            } text-sm font-medium ml-8 px-5 py-1 outline outline-[1px] outline-black/20 hover:outline-black rounded-[4px] group relative`}
+            } text-sm font-medium ml-8 px-5 py-1 outline outline-[1px] outline-black/20 hover:outline-black dark:hover:outline-white/50 dark:outline-white/20 rounded-[4px] group relative`}
             disabled={currentPage === pageNumbers.length}
             >
             Next

@@ -62,7 +62,7 @@ const Header = () => {
   return (
     <header
       onClick={() => setActiveModel(false)}
-      className="bg-white dark:bg-slate-700 dark:text-white fixed top-0 left-0 z-40 w-full h-16 flex items-center shadow-md"
+      className="bg-white dark:bg-gray-900 dark:text-white fixed top-0 left-0 z-40 w-full h-16 flex items-center shadow-md"
     >
       <div className="flex justify-between w-[min(100%-6rem,1380px)] mx-auto h-[70%]">
         <div className="flex items-center">
@@ -101,7 +101,7 @@ const Header = () => {
           onClick={(e) => e.stopPropagation()}
         >
           <input
-            className="pl-12 pr-10 w-full border rounded-xl outline-orange-300 outline-offset-1"
+            className="pl-12 pr-10 w-full border rounded-xl outline-orange-300 dark:outline-slate-800 dark:border-none outline-offset-1 dark:bg-gray-800"
             type="search"
             placeholder="Search the product"
             onChange={(e) => setQuery(e.target.value)}
@@ -244,7 +244,7 @@ const Header = () => {
             onMouseEnter={() => setCloseOnBlur(false)}
             onMouseLeave={() => setCloseOnBlur(true)}
             layout
-            className={`absolute -left-24 top-[122%] backdrop-blur-md bg-black/5 overflow-hidden shadow-md w-[150%] rounded-b-sm selection:bg-none`}
+            className={`absolute -left-24 top-[122%] backdrop-blur-md bg-black/5 dark:bg-black/40 overflow-hidden shadow-md w-[150%] rounded-b-sm selection:bg-none`}
             initial={false}
             animate={notifyOpen ? "open" : "closed"}
           >
@@ -337,7 +337,7 @@ const Header = () => {
                   variants={itemVariants}
                   className="text-right py-2 w-full mb-2"
                 >
-                  <span className="text-xs font-medium bg-slate-800 py-[6px] px-2 mr-5 rounded-sm text-white">
+                  <span className="text-xs font-medium bg-slate-800 dark:bg-red-500 py-[6px] px-2 mr-5 rounded-sm text-white">
                     dismiss
                   </span>
                 </motion.button>
@@ -400,7 +400,7 @@ const Header = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="20"
-                className="colorStroke000 svgStroke"
+                className="dark:stroke-white colorStroke000 svgStroke"
               ></circle>
               <path
                 fill="none"
@@ -409,7 +409,7 @@ const Header = () => {
                 strokeLinejoin="round"
                 strokeWidth="20"
                 d="M30.989,215.99064a112.03731,112.03731,0,0,1,194.02311.002"
-                className="colorStroke000 svgStroke"
+                className="dark:stroke-white colorStroke000 svgStroke"
               ></path>
             </svg>
             {userInfo && (
@@ -420,7 +420,7 @@ const Header = () => {
             onMouseEnter={() => setCloseOnBlur(false)}
             onMouseLeave={() => setCloseOnBlur(true)}
             layout
-            className={`absolute left-8 top-[122%] backdrop-blur-md bg-black/5 overflow-hidden shadow-md w-full rounded-b-sm selection:bg-none`}
+            className={`absolute left-8 top-[122%] backdrop-blur-md bg-black/5 dark:hover:bg-black/40 overflow-hidden shadow-md w-full rounded-b-sm selection:bg-none`}
             initial={false}
             animate={userDrawerOpen ? "open" : "closed"}
           >
@@ -449,7 +449,7 @@ const Header = () => {
               {userInfo ? (
                 <motion.button
                   variants={itemVariants}
-                  className="text-sm p-3 text-center font-medium w-full hover:bg-white/50 transition-colors duration-100"
+                  className="text-sm p-3 text-center font-medium w-full hover:bg-white/50 dark:bg-black/30 transition-colors duration-100"
                   onClick={async () => {
                     setUserDrawerOpen(false);
                     toast.loading("loading..");
@@ -469,7 +469,7 @@ const Header = () => {
               ) : (
                 <motion.button
                   variants={itemVariants}
-                  className={`text-sm p-3 text-center font-medium w-full hover:bg-white/50 transition-colors duration-100`}
+                  className={`text-sm p-3 text-center font-medium w-full hover:bg-white/50 transition-colors duration-100 dark:bg-black/30`}
                   onClick={() => {
                     setActiveSignInModel(true);
                     setUserDrawerOpen(false);

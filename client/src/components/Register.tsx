@@ -43,7 +43,7 @@ const RegisterScreen = ({ setIsLogIn, setActiveSignInModel }: propsType) => {
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="bg-white p-8 rounded-lg shadow-md relative"
+      className="bg-white p-8 rounded-lg shadow-md relative dark:bg-gray-700"
     >
       <span
         className="absolute -top-3 py-1 -right-3 bg-white rounded-full cursor-pointer hover:bg-red-500 text-red-500 hover:text-white transition-colors px-1 shadow-md"
@@ -66,7 +66,7 @@ const RegisterScreen = ({ setIsLogIn, setActiveSignInModel }: propsType) => {
       </span>
       <h1 className="text-2xl font-bold mb-6 text-center">Register</h1>
       <form onSubmit={handleSubmit}>
-        <div className="mb-4 relative">
+        <div className="relative">
           <label
             htmlFor="name"
             className="block font-medium text-sm text-gray-700 ml-1"
@@ -97,7 +97,7 @@ const RegisterScreen = ({ setIsLogIn, setActiveSignInModel }: propsType) => {
             />
           </svg>
         </div>
-        <div className="mb-4 relative">
+        <div className="relative">
           <label
             htmlFor="email"
             className="block font-medium text-sm text-gray-700 ml-1"
@@ -128,7 +128,7 @@ const RegisterScreen = ({ setIsLogIn, setActiveSignInModel }: propsType) => {
                 />
               </svg>
         </div>
-        <div className="mb-4 relative">
+        <div className="relative">
           <label
             htmlFor="password"
             className="block font-medium text-sm text-gray-700 ml-1"
@@ -249,7 +249,7 @@ const RegisterScreen = ({ setIsLogIn, setActiveSignInModel }: propsType) => {
         <button
           type="submit"
           disabled={loading}
-          className={`w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+          className={`w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 mt-2 ${
             loading && "opacity-50"
           }`}
         >
@@ -261,7 +261,7 @@ const RegisterScreen = ({ setIsLogIn, setActiveSignInModel }: propsType) => {
           Already have an account?{" "}
           <span
             onClick={() => setIsLogIn(true)}
-            className="cursor-pointer hover:text-blue-600 text-blue-500"
+            className="cursor-pointer hover:text-blue-600 text-blue-500 dark:text-yellow-400" 
           >
             Log In
           </span>

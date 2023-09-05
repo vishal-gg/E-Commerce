@@ -116,6 +116,23 @@ export const removeCartItem = createAsyncThunk(
   }
 );
 
+export const removeAllCartItem = createAsyncThunk(
+  "cart/removeAllCartItem",
+  async ({
+    userId
+  }: {
+    userId: string | undefined;
+  }) => {
+    try {
+      await axios.post(`http://localhost:5000/remove-all-items`, {
+        userId
+      });
+    } catch (err: any) {
+      throw new Error(err.response.data.error);
+    }
+  }
+);
+
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -198,6 +215,9 @@ const cartSlice = createSlice({
       .addCase(getUserCart.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || 'something went wrong'
+      })
+      .addCase(removeAllCartItem.fulfilled, (state) => {
+        state.items = [];
       })
   },
 });

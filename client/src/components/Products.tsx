@@ -130,7 +130,7 @@ const Products = ({ selectedProduct, setSelectedProduct }: propType) => {
               {activeTab === tab.id && (
                 <motion.span
                   layoutId="active-pill"
-                  className="absolute -top-[2px] -bottom-[2px] -left-2 -right-2 bg-zinc-700"
+                  className="absolute -top-[2px] -bottom-[2px] -left-2 -right-2 bg-zinc-700 dark:bg-zinc-900"
                   style={{ borderRadius: "9999px" }}
                 ></motion.span>
               )}
@@ -152,7 +152,7 @@ const Products = ({ selectedProduct, setSelectedProduct }: propType) => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={() => setSelectedCategory(null)}
-              className="text-sm rounded-full px-2 p-[2px] shadow-md transition-colors w-fit cursor-pointer flex items-center gap-[1px] group"
+              className="text-sm rounded-full px-2 p-[2px] shadow-md dark:bg-gray-600 transition-colors w-fit cursor-pointer flex items-center gap-[1px] group"
             >
               {selectedCategory.toLocaleLowerCase()}
               <svg

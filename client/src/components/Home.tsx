@@ -26,9 +26,9 @@ const Home = () => {
   }, [products]);
 
   return (
-    <div className="px-10 py-5 dark:bg-slate-900 dark:text-white">
+    <div className="px-10 py-5 dark:text-white">
       <div>
-        <h4 className="font-medium text-slate-700 pb-3 text-sm ml-1">
+        <h4 className="font-medium text-slate-700 dark:text-slate-200 pb-3 text-sm ml-1">
           HOT SALE
         </h4>
         <div className="flex gap-5 text-sm font-medium">
@@ -38,7 +38,7 @@ const Home = () => {
                 <Carousel />
               </div>
               <div className="flex-grow gap-2 xl:hidden">
-                <div className="text-[10px] text-zinc-400 mt-5 mb-1">
+                <div className="text-[10px] text-zinc-400 dark:text-zinc-200 mt-5 mb-1">
                   BEST SELLERS
                 </div>
                 <div className="flex gap-5 text-center text-xs">
@@ -153,7 +153,7 @@ const Home = () => {
                           {product.discount !== undefined ? (
                             <div className="flex xl:flex-col xl:gap-0 gap-2">
                               <div>
-                                <span className="text-xs line-through pr-2 text-zinc-400">
+                                <span className="text-xs line-through pr-2 text-zinc-400 dark:text-zinc-200">
                                   {product.price}
                                 </span>
                                 <span className="text-base">
@@ -206,8 +206,8 @@ const Home = () => {
             </div>
           </div>
           <div className="xl:flex flex-grow gap-2 flex-col  border-red-400 pl-5 max-w hidden relative text-xs">
-            <span className="absolute left-0 rounded-full inline-block h-full w-[1px] bg-gradient-to-b from-transparent via-zinc-500 to-transparent opacity-50"></span>
-            <div className="text-[10px] text-zinc-400 whitespace-nowrap">
+            <span className="absolute left-0 rounded-full inline-block h-full w-[1px] bg-gradient-to-b from-transparent dark:via-zinc-100 via-zinc-500 to-transparent opacity-50"></span>
+            <div className="text-[10px] text-zinc-400 dark:text-zinc-200 whitespace-nowrap">
               BEST SELLERS
             </div>
             <div className="flex gap-2 items-center">

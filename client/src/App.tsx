@@ -44,7 +44,7 @@ const App = () => {
   return (
     <CategoryProvider>
       <DetailProvider>
-        <div className={`${isCartPage ? 'pl-0' : 'pl-40 max-[578px]:pl-0'} pt-16`}>
+        <div className={`${isCartPage ? 'pl-0' : 'pl-40 max-[578px]:pl-0'} pt-16 min-h-screen dark:bg-gray-700`}>
           <Header />
           {!isCartPage && <Sidebar />}
           <Toaster />

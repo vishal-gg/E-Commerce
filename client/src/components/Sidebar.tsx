@@ -19,16 +19,17 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="fixed bg-rose-400 w-36 h-[30%] opacity-30 rounded-full top-5 left-0 max-[578px]:hidden"></div>
-      <div className="fixed bg-blue-400 w-36 h-[60%] opacity-20 rounded-full -bottom-20 left-0 max-[578px]:hidden"></div>
-      <div className="fixed left-0 top-16 z-30 w-fit h-screen backdrop-blur-3xl max-[578px]:hidden">
+      <div className="fixed top-16 bottom-0 left-0 w-40 bg-black hidden min-[578px]:dark:block"></div>
+      <div className="fixed bg-rose-400 w-40 h-[30%] opacity-30 rounded-full top-5 left-0 max-[578px]:hidden"></div>
+      <div className="fixed bg-blue-400 w-40 h-[60%] opacity-20 rounded-full -bottom-20 left-0 max-[578px]:hidden"></div>
+      <div className="fixed left-0 top-16 z-30 w-40 h-screen backdrop-blur-3xl max-[578px]:hidden">
         <div className="mt-5">
-          <h1 className="font-bold text-center">Categories</h1>
-          <ul className="grid mt-2 relative">
+          <h1 className="font-bold text-center dark:text-white">Categories</h1>
+          <ul className="grid mt-2 relative dark:text-white">
             {tabs.map((tab, index) => (
               <li
-                className={`text-sm font-medium px-10 hover:bg-white/50 transition-colors cursor-pointer py-3 relative ${
-                  selectedCategory === tab && "text-orange-500"
+                className={`text-sm font-medium px-10 hover:bg-white/50 dark:hover:bg-white/10 transition-colors cursor-pointer py-3 relative ${
+                  selectedCategory === tab && "text-orange-500 dark:text-yellow-500"
                 }`}
                 key={index}
               >
@@ -52,7 +53,7 @@ const Sidebar = () => {
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.5, type: "spring" }}
-                      className="absolute -right-[2px] bottom-0 h-full w-1 bg-orange-500 inline-block rounded-full"
+                      className="absolute -right-[2px] bottom-0 h-full w-1 bg-orange-500 dark:bg-yellow-500 inline-block rounded-full"
                     ></motion.span>
                   )}
                 </AnimatePresence>
@@ -71,7 +72,7 @@ const Sidebar = () => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="w-6 h-6 dark:text-white"
         >
           <path
             strokeLinecap="round"
@@ -96,16 +97,18 @@ const Sidebar = () => {
           animate={toggleSidebar ? { translateX: 0 } : {}}
           transition={{ type: "tween" }}
           onClick={(e) => e.stopPropagation()}
-          className="fixed left-0 top-16 z-30 w-fit h-screen bg-blue-100"
+          className="fixed left-0 top-16 z-30 w-fit h-screen bg-blue-100 dark:bg-zinc-800 dark:text-white"
         >
           <div className="mt-5">
             <h1 className="font-bold text-center">Categories</h1>
             <ul className="grid mt-2 relative">
               {tabs.map((tab, index) => (
                 <li
-                  className={`text-sm font-medium px-10 transition-colors cursor-pointer py-3 relative ${selectedCategory === tab && 'text-orange-500'}`}
+                  className={`text-sm font-medium px-10 transition-colors cursor-pointer py-3 relative ${
+                    selectedCategory === tab && "text-orange-500"
+                  }`}
                   key={index}
-                  onClick={()=>{}}
+                  onClick={() => {}}
                 >
                   <Link
                     className="absolute inset-0"
@@ -116,7 +119,7 @@ const Sidebar = () => {
                     onClick={() => {
                       setActiveCategory(tab);
                       setSelectedCategory(tab);
-                      setToggleSidebar(false)
+                      setToggleSidebar(false);
                     }}
                   ></Link>
                   {tab}

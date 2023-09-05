@@ -104,7 +104,7 @@ const ProductDetails = ({ selectedProduct, setSelectedProduct }: propsType) => {
       onClick={() => setSelectedProduct(null)}
     >
       <motion.div
-        className="fixed inset-40 max-[1300px]:left-20 max-[1300px]:right-20 top-5 bottom-5 min-[1300px]:bottom-16 min-[1300px]:top-16 backdrop-blur-md rounded-2xl shadow-md max-[1300px]:overflow-y-scroll bg-white productDetailScrollBar"
+        className="fixed inset-40 max-[1300px]:left-20 max-[1300px]:right-20 top-5 bottom-5 min-[1300px]:bottom-16 min-[1300px]:top-16 backdrop-blur-md rounded-2xl shadow-md max-[1300px]:overflow-y-scroll dark:text-white bg-white dark:bg-gray-700 productDetailScrollBar"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0 }}
@@ -139,7 +139,7 @@ const ProductDetails = ({ selectedProduct, setSelectedProduct }: propsType) => {
             className="w-1/2 max-h-full object-contain mr-auto flex-1 min-w-[50%] max-[1300px]:mx-auto"
             draggable={false}
           />
-          <hr className="bg-gradient-to-b from-transparent via-zinc-300 to-transparent h-full w-[1px] hidden sm:block" />
+          <hr className="bg-gradient-to-b from-transparent dark:via-transparent via-zinc-300 to-transparent h-full w-[1px] hidden sm:block" />
           <motion.div
           variants={{hidden: {opacity: 0, scale: .99}, show: {opacity: 1, scale: 1}}}
           initial="hidden"
@@ -212,7 +212,7 @@ const ProductDetails = ({ selectedProduct, setSelectedProduct }: propsType) => {
                     key="AddToCart"
                     exit={{rotateX: 90, opacity: 0, scale: .9}}
                     transition={{duration: .1, ease: 'easeInOut'}}
-                      className={`p-1 bg-[#3F4E4F] hover:bg-[#2C3639] ${
+                      className={`p-1 bg-[#3F4E4F] hover:bg-[#2C3639] dark:bg-slate-800 dark:hover:bg-slate-900 ${
                         ifItemExistsOnCart && "bg-blue-600"
                       } transition-colors flex items-center gap-1 text-white px-3 text-sm rounded-full shadow-md absolute inset-0`}
                       onClick={() => {
@@ -254,7 +254,7 @@ const ProductDetails = ({ selectedProduct, setSelectedProduct }: propsType) => {
                     animate={{rotateX: 0, opacity: 1, scale: 1}}
                     transition={{duration: .1, delay: .1, ease: 'easeInOut'}}
                     key="GoToCart"
-                      className={`p-1 bg-[#5C5470] hover:bg-[#352F44] transition-colors flex items-center gap-1 text-white px-3 text-sm rounded-full shadow-md absolute inset-0`}
+                      className={`p-1 bg-[#5c5470] hover:bg-[#352F44] dark:bg-rose-600 transition-colors flex items-center gap-1 text-white px-3 text-sm rounded-full shadow-md absolute inset-0`}
                       onClick={() => {
                         navigate("/cart");
                         isCartPage && setSelectedProduct(null);
