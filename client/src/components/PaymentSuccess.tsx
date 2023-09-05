@@ -1,4 +1,4 @@
-import Lottie from "react-lottie";
+// import Lottie from "react-lottie";
 import animationData from "../lotties/success.json";
 import { useNavigate } from "react-router-dom";
 import Confetti from "react-confetti";
@@ -210,12 +210,12 @@ const PaymentSuccess = () => {
                   ></path>
                 </g>
               </svg>
-              <Lottie
+              {/* <Lottie
                 options={defaultOptions}
                 height={90}
                 width={90}
                 style={{ position: "absolute", inset: 0, marginTop: "2rem" }}
-              />
+              /> */}
             </div>
             <div className="text-center flex flex-col gap-1">
               <h1 className="text-4xl font-bold text-slate-800">
