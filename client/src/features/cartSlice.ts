@@ -28,7 +28,7 @@ export const addToCart = createAsyncThunk(
     quantity: number | undefined;
   }) => {
     try {
-      await axios.post("http://localhost:5000/add-to-cart", {
+      await axios.post("https://e-commerce-serverside.vercel.app/add-to-cart", {
         productId,
         userId,
         quantity,
@@ -44,7 +44,7 @@ export const getUserCart = createAsyncThunk(
   async (userId: string | undefined) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:5000/my-cart/${userId}`
+        `https://e-commerce-serverside.vercel.app/my-cart/${userId}`
       );
       return data;
     } catch (err: any) {
@@ -65,7 +65,7 @@ export const updateCartQuantity = createAsyncThunk(
     quantity: number;
   }) => {
     try {
-      await axios.put(`http://localhost:5000/update-cart-quantity`, {
+      await axios.put(`https://e-commerce-serverside.vercel.app/update-cart-quantity`, {
         productId,
         userId,
         quantity,
@@ -86,7 +86,7 @@ export const syncCartItem = createAsyncThunk(
     cartItems: { product: data; quantity: number }[];
   }) => {
     try {
-      await axios.post(`http://localhost:5000/sync-cart`, {
+      await axios.post(`https://e-commerce-serverside.vercel.app/sync-cart`, {
         userId,
         cartItems,
       });
@@ -106,7 +106,7 @@ export const removeCartItem = createAsyncThunk(
     userId: string | undefined;
   }) => {
     try {
-      await axios.post(`http://localhost:5000/remove-cart-item`, {
+      await axios.post(`https://e-commerce-serverside.vercel.app/remove-cart-item`, {
         productId,
         userId,
       });
@@ -124,7 +124,7 @@ export const removeAllCartItem = createAsyncThunk(
     userId: string | undefined;
   }) => {
     try {
-      await axios.post(`http://localhost:5000/remove-all-items`, {
+      await axios.post(`https://e-commerce-serverside.vercel.app/remove-all-items`, {
         userId
       });
     } catch (err: any) {

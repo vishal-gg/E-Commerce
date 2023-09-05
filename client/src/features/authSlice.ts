@@ -20,7 +20,7 @@ export const register = createAsyncThunk(
   async ({ name, email, password }: registerPayload) => {
     try {
       const { data } = await axios.post<ApiResponse>(
-        "http://localhost:5000/api/users",
+        "https://e-commerce-serverside.vercel.app/api/users",
         { name, email, password }
       );
       return data;
@@ -38,7 +38,7 @@ export const signIn = createAsyncThunk(
   async ({ email, password }: SignInPayload) => {
     try {
       const { data } = await axios.post<ApiResponse>(
-        "http://localhost:5000/api/users/auth",
+        "https://e-commerce-serverside.vercel.app/api/users/auth",
         { email, password }
       );
       return data;
@@ -54,7 +54,7 @@ export const signIn = createAsyncThunk(
 
 export const logout = createAsyncThunk("auth/logout", async () => {
   try {
-    const { data } = await axios.post("http://localhost:5000/api/users/logout");
+    const { data } = await axios.post("https://e-commerce-serverside.vercel.app/api/users/logout");
     return data;
   } catch (err: any) {
     if (err.response) {
@@ -70,7 +70,7 @@ export const deleteAccount = createAsyncThunk(
   async (id: string) => {
     try {
       const { data } = await axios.delete(
-        `http://localhost:5000/api/users/${id}`
+        `https://e-commerce-serverside.vercel.app/api/users/${id}`
       );
       return data;
     } catch (err: any) {
