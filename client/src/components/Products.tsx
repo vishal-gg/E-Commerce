@@ -51,7 +51,7 @@ const Products = ({ selectedProduct, setSelectedProduct }: propType) => {
 
   // for pagination
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [postsPerPage, setPostsPerPage] = useState<number>(20);
+  const [postsPerPage, _setPostsPerPage] = useState<number>(20);
 
   // get all posts to show on single page
   const indexOfLastPost = currentPage * postsPerPage;

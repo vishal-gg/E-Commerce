@@ -1,5 +1,5 @@
 // import Lottie from "react-lottie";
-import animationData from "../lotties/failed.json";
+// import animationData from "../lotties/failed.json";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
@@ -8,21 +8,21 @@ const PaymentFailed = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
-  const defaultOptions = {
-    loop: false,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
+  // const defaultOptions = {
+  //   loop: false,
+  //   autoplay: true,
+  //   animationData: animationData,
+  //   rendererSettings: {
+  //     preserveAspectRatio: "xMidYMid slice",
+  //   },
+  // };
 
   useEffect(() => {
-    let timer;
+    let timer: number;
     timer = setTimeout(() => {
       setLoading(false);
     }, 1000);
-    return () => clearTimeout(timer!!);
+    return () => clearTimeout(timer);
   }, []);
 
   const containerVarient = {

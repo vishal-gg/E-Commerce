@@ -1,5 +1,5 @@
 // import Lottie from "react-lottie";
-import animationData from "../lotties/success.json";
+// import animationData from "../lotties/success.json";
 import { useNavigate } from "react-router-dom";
 import Confetti from "react-confetti";
 import { useEffect, useState, useMemo } from "react";
@@ -11,25 +11,25 @@ const PaymentSuccess = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
-  const defaultOptions = {
-    loop: false,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
+  // const defaultOptions = {
+  //   loop: false,
+  //   autoplay: true,
+  //   animationData: animationData,
+  //   rendererSettings: {
+  //     preserveAspectRatio: "xMidYMid slice",
+  //   },
+  // };
 
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.Authentication);
   const { items } = useAppSelector((state) => state.Cart);
 
   useEffect(() => {
-    let timer;
+    let timer: number;
     timer = setTimeout(() => {
       setLoading(false);
     }, 1500);
-    return () => clearTimeout(timer!!);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
