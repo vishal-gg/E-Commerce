@@ -24,7 +24,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cookieParser())
 app.use(cors({
-    origin: ["http://localhost:5173", `${process.env.ADMIN_LOGIN}`]
+    origin: ["http://localhost:5173", "https://e-commerce-frontend-gamma-wheat.vercel.app" `${process.env.ADMIN_LOGIN}`]
 }));
   
 // Routes
