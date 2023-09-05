@@ -91,7 +91,7 @@ const LoginScreen = ({ setActiveSignInModel }: propsType) => {
               <input
                 type="email"
                 id="email"
-                className="w-full pl-4 pr-8 py-2 border rounded-md focus:outline-none focus:border-blue-400"
+                className="w-full pl-4 pr-8 py-2 border rounded-md focus:outline-none focus:border-blue-400 dark:text-black"
                 placeholder="example@gmail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -122,7 +122,7 @@ const LoginScreen = ({ setActiveSignInModel }: propsType) => {
               <input
                 type={hidePassword ? "password" : "text"}
                 id="password"
-                className="w-full pl-4 pr-8 py-2 border rounded-md focus:outline-none focus:border-blue-400"
+                className="w-full pl-4 pr-8 py-2 border rounded-md focus:outline-none focus:border-blue-400 dark:text-black"
                 placeholder="******"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
