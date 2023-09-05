@@ -143,7 +143,7 @@ const Cart = () => {
         );
         const stripe = await stripePromise;
         const res = await axios.post(
-          "http://localhost:5000/create-checkout-session",
+          "https://e-commerce-serverside.vercel.app/create-checkout-session",
           { itemsToCheckout }
         );
 
