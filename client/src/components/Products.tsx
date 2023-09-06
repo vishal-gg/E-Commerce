@@ -4,7 +4,7 @@ import { useAppSelector } from "../types/storeType";
 import { calculateDiscount } from "../utils/calculateDiscounts";
 import { data } from "../types/productType";
 import { Link } from "react-scroll";
-import { useCategory } from "../hooks/CategoryContext";
+import { useCombinedContext } from "../hooks/combinedContext";
 import ProductDetails from "./ProductDetails";
 import Paginate from "./Paginate";
 
@@ -18,11 +18,7 @@ const Products = ({ selectedProduct, setSelectedProduct }: propType) => {
 
   const { products } = useAppSelector((state) => state.Products);
 
-  const categoryContext = useCategory();
-  if (!categoryContext) {
-    throw new Error("useCategory must be used within a CategoryProvider");
-  }
-  const { selectedCategory, setSelectedCategory } = categoryContext;
+  const { selectedCategory, setSelectedCategory } = useCombinedContext();
 
   const filterByCategory = (products: data[] | null, category: string) => {
     return products

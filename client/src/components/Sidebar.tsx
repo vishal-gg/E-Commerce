@@ -1,19 +1,12 @@
 import { Link } from "react-scroll";
-import { useCategory } from "../hooks/CategoryContext";
+import { useCombinedContext } from "../hooks/combinedContext";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
 const Sidebar = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [toggleSidebar, setToggleSidebar] = useState(false);
-  const categoryContext = useCategory();
-
-  if (!categoryContext) {
-    // Handle the case where the context is not available
-    throw new Error("useCategory must be used within a CategoryProvider");
-  }
-
-  const { selectedCategory, setSelectedCategory } = categoryContext;
+  const { selectedCategory, setSelectedCategory } = useCombinedContext();
 
   const tabs = ["Tv", "Audio", "Laptop", "Mobile", "Gaming", "Appliances"];
 
@@ -29,7 +22,8 @@ const Sidebar = () => {
             {tabs.map((tab, index) => (
               <li
                 className={`text-sm font-medium px-10 hover:bg-white/50 dark:hover:bg-white/10 transition-colors cursor-pointer py-3 relative ${
-                  selectedCategory === tab && "text-orange-500 dark:text-yellow-500"
+                  selectedCategory === tab &&
+                  "text-orange-500 dark:text-yellow-500"
                 }`}
                 key={index}
               >

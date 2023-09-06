@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { clearAllCartItems } from "../features/cartSlice";
 import { useMemo, useState, useEffect } from "react";
 import { AnimatePresence, Variants } from "framer-motion";
-import { useDetail } from "../hooks/DetailContext";
 import { motion } from "framer-motion";
 import LoginScreen from "./Login";
 import { toast } from "react-hot-toast";
+import {useCombinedContext} from '../hooks/combinedContext';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -21,15 +21,24 @@ const Header = () => {
   const [activeModel, setActiveModel] = useState(false);
   const [notifyOpen, setNotifyOpen] = useState(false);
   const [userDrawerOpen, setUserDrawerOpen] = useState(false);
-  const [activeSignInModel, setActiveSignInModel] = useState(false);
   const [closeOnBlur, setCloseOnBlur] = useState(true);
-  const detailContext = useDetail();
+  const {activeSignInModel, setActiveSignInModel, setSelectedProduct} = useCombinedContext();
+  const [themePreference, setThemePreference] = useState(()=>{
+    const selectedTheme = localStorage.getItem('themePreference')
+    return selectedTheme ? selectedTheme  : 'light';
+  });
 
-  if (!detailContext) {
-    // Handle the case where the context is not available
-    throw new Error("useDetail must be used within a CategoryProvider");
+  const handleThemePreference = () => {
+    setThemePreference((prev: string) => {
+      if(prev === 'light') {
+        localStorage.setItem('themePreference', 'dark')
+        return 'dark'
+      } else {
+        localStorage.setItem('themePreference', 'light')
+        return 'light'
+      }
+    })
   }
-  const { setSelectedProduct } = detailContext;
 
   const searchedProduct = useMemo(() => {
     if (query.trim() === "") return [];
@@ -59,42 +68,59 @@ const Header = () => {
     return () => toast.dismiss();
   }, [loading, error]);
 
+
+  useEffect(()=> {
+    const html = document.querySelector('html')
+    themePreference === 'dark' ? html?.setAttribute('class', 'dark') : html?.setAttribute('class', 'light')
+  }, [themePreference])
+
   return (
     <header
       onClick={() => setActiveModel(false)}
       className="bg-white dark:bg-gray-900 dark:text-white fixed top-0 left-0 z-40 w-full h-16 flex items-center shadow-md"
     >
       <div className="flex justify-between w-[min(100%-6rem,1380px)] mx-auto h-[70%]">
-        <div className="flex items-center">
-          <span className="w-10 h-10 rounded-full overflow-hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 1024 1024"
-              onClick={() => navigate("/")}
-            >
-              <path
-                fill="#ed7161"
-                d="M0 0h1024v1024H0z"
-                className="colorED7161 svgShape"
-              ></path>
-              <path
-                fill="#ffffff"
-                d="M438.316 712C368.666 712 312 655.339 312 585.685c0-69.656 56.666-126.317 126.316-126.317 69.649 0 126.315 56.661 126.315 126.317 0 69.654-56.666 126.315-126.315 126.315zm0-231.58c-58.044 0-105.263 47.226-105.263 105.265 0 58.038 47.219 105.262 105.263 105.262 58.043 0 105.263-47.224 105.263-105.262 0-58.04-47.22-105.264-105.263-105.264z"
-                className="colorFFF svgShape"
-              ></path>
-              <path
-                fill="#ffffff"
-                d="M585.684 712c-69.65 0-126.315-56.661-126.315-126.315 0-69.656 56.666-126.317 126.315-126.317S712 516.03 712 585.685C712 655.339 655.333 712 585.684 712zm0-231.58c-58.044 0-105.263 47.226-105.263 105.265 0 58.038 47.22 105.262 105.263 105.262 58.043 0 105.263-47.224 105.263-105.262 0-58.04-47.22-105.264-105.263-105.264z"
-                className="colorFFF svgShape"
-              ></path>
-              <path
-                fill="#ffffff"
-                d="M512 564.632c-69.65 0-126.316-56.661-126.316-126.317C385.684 368.661 442.35 312 512 312s126.316 56.661 126.316 126.315c0 69.656-56.667 126.317-126.316 126.317zm0-231.58c-58.044 0-105.264 47.225-105.264 105.263 0 58.04 47.22 105.264 105.264 105.264s105.263-47.224 105.263-105.264c0-58.038-47.22-105.262-105.263-105.262z"
-                className="colorFFF svgShape"
-              ></path>
+        <div className="flex items-end gap-1 text-sm mb-2">
+          <span className="w-8 h-8" 
+          onClick={() => navigate('/')}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44.36 48.82">
+              <g
+                data-name="Layer 2"
+                fill="#000000"
+                className="color000 svgShape"
+              >
+                <g
+                  data-name="Layer 1"
+                  fill="#000000"
+                  className="color000 svgShape"
+                >
+                  <path
+                    fill="#ff491f"
+                    d="M37.17 48.82H0L3.77 12.5H33.4l.6 6.06Z"
+                    className="colorff491f svgShape"
+                  ></path>
+                  <path
+                    fill="#ed3618"
+                    d="M19.09 24.24h20.59l2.62 24.58H16.47Z"
+                    className="colored3618 svgShape"
+                  ></path>
+                  <path
+                    fill="#ffe14d"
+                    d="M21.15 24.24h20.59l2.62 24.58H18.53Z"
+                    className="colorffe14d svgShape"
+                  ></path>
+                  <path
+                    fill="currentColor"
+                    d="M26.58 16.79a.74.74 0 0 1-.74-.74V8.73a7.26 7.26 0 1 0-14.51 0v7.33a.74.74 0 1 1-1.47 0V8.73a8.73 8.73 0 0 1 17.46 0v7.33a.74.74 0 0 1-.74.73zM31.45 39a5.51 5.51 0 0 1-5.51-5.51v-4.76a.74.74 0 1 1 1.47 0v4.77a4 4 0 0 0 8.07 0v-4.77a.74.74 0 0 1 1.47 0v4.77a5.51 5.51 0 0 1-5.5 5.5z"
+                    className="dark:text-white text-slate-700 svgShape"
+                  ></path>
+                </g>
+              </g>
             </svg>
           </span>
-          <span>logo</span>
+          <span>eShop</span>
+          <span onClick={handleThemePreference} className="text-sm font-semibold">{themePreference}</span>
         </div>
         <div
           className="w-[55%] flex relative 378:mx-6 mx-2"

@@ -66,10 +66,10 @@ const RegisterScreen = ({ setIsLogIn, setActiveSignInModel }: propsType) => {
       </span>
       <h1 className="text-2xl font-bold mb-6 text-center">Register</h1>
       <form onSubmit={handleSubmit}>
-        <div className="relative">
+        <div className="mb-3 relative">
           <label
             htmlFor="name"
-            className="block font-medium text-sm text-gray-700 ml-1"
+            className="block font-medium text-sm text-gray-700 ml-1 dark:text-white"
           >
             Name
           </label>
@@ -97,10 +97,10 @@ const RegisterScreen = ({ setIsLogIn, setActiveSignInModel }: propsType) => {
             />
           </svg>
         </div>
-        <div className="relative">
+        <div className="mb-3 relative">
           <label
             htmlFor="email"
-            className="block font-medium text-sm text-gray-700 ml-1"
+            className="block font-medium text-sm text-gray-700 ml-1 dark:text-white"
           >
             Email
           </label>
@@ -128,10 +128,10 @@ const RegisterScreen = ({ setIsLogIn, setActiveSignInModel }: propsType) => {
                 />
               </svg>
         </div>
-        <div className="relative">
+        <div className="mb-3 relative">
           <label
             htmlFor="password"
-            className="block font-medium text-sm text-gray-700 ml-1"
+            className="block font-medium text-sm text-gray-700 ml-1 dark:text-white"
           >
             Password
           </label>
@@ -187,10 +187,10 @@ const RegisterScreen = ({ setIsLogIn, setActiveSignInModel }: propsType) => {
             )}
           </button>
         </div>
-        <div className="mb-4 relative">
+        <div className="mb-3 relative">
           <label
             htmlFor="confirmPassword"
-            className="block font-medium text-sm text-gray-700 ml-1"
+            className="block font-medium text-sm text-gray-700 ml-1 dark:text-white"
           >
           Confirm Password
           </label>

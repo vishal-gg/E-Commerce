@@ -3,17 +3,11 @@ import { useAppSelector } from "../types/storeType";
 import { useEffect, useState } from "react";
 import { data } from "../types/productType";
 import { calculateDiscount } from "../utils/calculateDiscounts";
-import { useDetail } from "../hooks/DetailContext";
+import { useCombinedContext } from "../hooks/combinedContext";
 import Carousel from "./Carousel";
 
 const Home = () => {
-  const detailContext = useDetail();
-
-  if (!detailContext) {
-    // Handle the case where the context is not available
-    throw new Error("useDetail must be used within a CategoryProvider");
-  }
-  const { selectedProduct, setSelectedProduct } = detailContext;
+  const {selectedProduct, setSelectedProduct} = useCombinedContext();
 
   const [productsOnSale, setProductsOnSale] = useState<data[]>();
   const [imageOnLoad, setImageOnLoad] = useState(true);

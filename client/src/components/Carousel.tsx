@@ -24,7 +24,7 @@ const Carousel = () => {
         }}
         spaceBetween={0}
         // pagination={{ dynamicBullets: true }}
-        autoplay={{delay: 3000, disableOnInteraction: false}}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
         modules={[Navigation, Pagination, Autoplay]}
       >
         {slides.map((img, i) => (

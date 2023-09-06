@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../types/storeType";
-import { useDetail } from "../hooks/DetailContext";
+import {useCombinedContext} from '../hooks/combinedContext';
 import {
   increaseProductQuantity,
   decreaseProductQuantity,
@@ -23,14 +23,8 @@ const Cart = () => {
   const { userInfo } = useAppSelector((state) => state.Authentication);
   const dispatch = useAppDispatch();
 
-  const detailContext = useDetail();
-
-  if (!detailContext) {
-    // Handle the case where the context is not available
-    throw new Error("useDetail must be used within a CategoryProvider");
-  }
-
-  const { selectedProduct, setSelectedProduct } = detailContext;
+  const {selectedProduct, setSelectedProduct} = useCombinedContext();
+  const {setActiveSignInModel} = useCombinedContext();
 
   const increaseQuantity = (product: CartItem) => {
     dispatch(increaseProductQuantity(product));
@@ -129,7 +123,7 @@ const Cart = () => {
 
   const handleCheckout = async () => {
     if (subtotal === 0) return toast("select an item");
-    if (!userInfo) return toast.error("sign In to procced");
+    if (!userInfo) return setActiveSignInModel(true);
 
     const itemsToCheckout = items.filter((item) =>
       selectedItems.includes(item.product._id)
