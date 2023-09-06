@@ -40,8 +40,8 @@ router.post("/create-checkout-session", async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: `${req.headers.origin}/payment-success?session_id=${uuidv4()}`,
-      cancel_url: `${req.headers.origin}/payment-failed?session_id=${uuidv4()}`
+      success_url: `${req.headers.origin}/#/payment-success?session_id=${uuidv4()}`,
+      cancel_url: `${req.headers.origin}/#/payment-failed?session_id=${uuidv4()}`
     });
 
     res.status(200).json({ session_id: session.id });
