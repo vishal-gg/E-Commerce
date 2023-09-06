@@ -1,5 +1,5 @@
-// import Lottie from "react-lottie";
-// import animationData from "../lotties/success.json";
+import animationData from "../lotties/success.json";
+import Lottie from "lottie-react";
 import { useNavigate } from "react-router-dom";
 import Confetti from "react-confetti";
 import { useEffect, useState, useMemo } from "react";
@@ -10,15 +10,6 @@ import { removeAllCartItem } from "../features/cartSlice";
 const PaymentSuccess = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-
-  // const defaultOptions = {
-  //   loop: false,
-  //   autoplay: true,
-  //   animationData: animationData,
-  //   rendererSettings: {
-  //     preserveAspectRatio: "xMidYMid slice",
-  //   },
-  // };
 
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.Authentication);
@@ -39,7 +30,7 @@ const PaymentSuccess = () => {
           removeAllCartItem({
             userId: userInfo?._id,
           })
-        )
+        );
       }
     }
   }, [items.length]);
@@ -72,7 +63,9 @@ const PaymentSuccess = () => {
     <>
       <div className="fixed inset-0 top-16 backdrop-blur-3xl z-30 flex flex-col justify-center items-center">
         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-xs font-medium flex flex-col items-center">
-          <span className="text-gray-500 dark:text-white/50">All rights reserved.</span>
+          <span className="text-gray-500 dark:text-white/50">
+            All rights reserved.
+          </span>
           <div className="flex gap-1">
             <span>💌</span>
           </div>
@@ -210,12 +203,13 @@ const PaymentSuccess = () => {
                   ></path>
                 </g>
               </svg>
-              {/* <Lottie
-                options={defaultOptions}
+              <Lottie
+                animationData={animationData}
+                loop={false}
                 height={90}
                 width={90}
                 style={{ position: "absolute", inset: 0, marginTop: "2rem" }}
-              /> */}
+              />
             </div>
             <div className="text-center flex flex-col gap-1">
               <h1 className="text-4xl font-bold text-slate-800">

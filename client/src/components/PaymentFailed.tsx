@@ -1,5 +1,5 @@
-// import Lottie from "react-lottie";
-// import animationData from "../lotties/failed.json";
+import Lottie from "lottie-react";
+import animationData from "../lotties/failed.json";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
@@ -7,15 +7,6 @@ import { motion } from "framer-motion";
 const PaymentFailed = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-
-  // const defaultOptions = {
-  //   loop: false,
-  //   autoplay: true,
-  //   animationData: animationData,
-  //   rendererSettings: {
-  //     preserveAspectRatio: "xMidYMid slice",
-  //   },
-  // };
 
   useEffect(() => {
     let timer: number;
@@ -53,17 +44,20 @@ const PaymentFailed = () => {
     <>
       <div className="fixed inset-0 top-16 backdrop-blur-3xl z-30 flex flex-col justify-center items-center">
         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-xs font-medium flex flex-col items-center">
-          <span className="text-gray-500 dark:text-white/50">All rights reserved.</span>
+          <span className="text-gray-500 dark:text-white/50">
+            All rights reserved.
+          </span>
           <div className="flex gap-1">
             <span>💌</span>
           </div>
-          </div>
+        </div>
         {!loading ? (
           <motion.div
-          initial={{opacity: .5, scale: .9}}
-          animate={{opacity: 1, scale: 1}}
-          transition={{type: 'tween', duration: 1}}
-          className="flex flex-col gap-2 items-center py-8 px-28 bg-zinc-100 rounded-md shadow-md">
+            initial={{ opacity: 0.5, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: "tween", duration: 1 }}
+            className="flex flex-col gap-2 items-center py-8 px-28 bg-zinc-100 rounded-md shadow-md"
+          >
             <div className="relative w-fit">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -185,18 +179,22 @@ const PaymentFailed = () => {
                   ></path>
                 </g>
               </svg>
-              {/* <Lottie
-                options={defaultOptions}
+              <Lottie
+                animationData={animationData}
+                loop={false}
                 height={90}
                 width={90}
-                style={{ position: "absolute", inset: 0, marginTop: "2rem" }}
-              /> */}
+                style={{ position: "absolute", inset: 22, marginTop: "2rem" }}
+              />
             </div>
             <div className="text-center flex flex-col gap-1">
               <h1 className="text-4xl font-bold text-slate-800">
                 Your order was not confirmed
               </h1>
-              <p className="text-sm font-medium text-gray-500"> Please check your email for further details.</p>
+              <p className="text-sm font-medium text-gray-500">
+                {" "}
+                Please check your email for further details.
+              </p>
               <button
                 className="mx-auto mt-5 flex items-center justify-center gap-1 px-2 py-1 bg-red-500 hover:bg-red-600 text-sm text-white rounded-md group transition-colors"
                 onClick={() => navigate("/", { replace: true })}
