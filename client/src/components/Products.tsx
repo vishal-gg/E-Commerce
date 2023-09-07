@@ -177,7 +177,7 @@ const Products = ({ selectedProduct, setSelectedProduct }: propType) => {
           {currentProducts
             ? currentProducts.map((product, i) => (
                 <motion.div
-                  layoutId={product._id}
+                  // layoutId={product._id}
                   initial={{ opacity: 0, scale: .9}}
                   animate={{ opacity: 1, scale: 1}}
                   exit={{ opacity: 0, scale: .9, transition: {duration: .2}}}
