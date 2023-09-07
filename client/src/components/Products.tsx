@@ -175,12 +175,13 @@ const Products = ({ selectedProduct, setSelectedProduct }: propType) => {
       >
         <AnimatePresence initial={false} mode="popLayout">
           {currentProducts
-            ? currentProducts.map((product) => (
+            ? currentProducts.map((product, i) => (
                 <motion.div
                   layoutId={product._id}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0, scale: .9}}
+                  animate={{ opacity: 1, scale: 1}}
+                  exit={{ opacity: 0, scale: .9, transition: {duration: .2}}}
+                  transition={{delay: .05*i, duration: .3}}
                   key={product._id}
                   onClick={() => {
                     setSelectedProduct(product);

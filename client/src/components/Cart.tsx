@@ -384,17 +384,17 @@ const Cart = () => {
                     <motion.span
                       variants={childrenVariants}
                       transition={childrenTransition}
-                      className="h-3 w-3 rounded-full bg-black"
+                      className="h-3 w-3 rounded-full bg-black dark:bg-white"
                     ></motion.span>
                     <motion.span
                       variants={childrenVariants}
                       transition={childrenTransition}
-                      className="h-3 w-3 rounded-full bg-black"
+                      className="h-3 w-3 rounded-full bg-black dark:bg-white"
                     ></motion.span>
                     <motion.span
                       variants={childrenVariants}
                       transition={childrenTransition}
-                      className="h-3 w-3 rounded-full bg-black"
+                      className="h-3 w-3 rounded-full bg-black dark:bg-white"
                     ></motion.span>
                   </motion.div>
                 </div>
