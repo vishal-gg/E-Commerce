@@ -6,7 +6,7 @@ import { useState } from "react";
 const Sidebar = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [toggleSidebar, setToggleSidebar] = useState(false);
-  const { selectedCategory, setSelectedCategory } = useCombinedContext();
+  const { selectedCategory, setSelectedCategory, setCurrentPage } = useCombinedContext();
 
   const tabs = ["Tv", "Audio", "Laptop", "Mobile", "Gaming", "Appliances"];
 
@@ -36,6 +36,7 @@ const Sidebar = () => {
                   onClick={() => {
                     setActiveCategory(tab);
                     setSelectedCategory(tab);
+                    setCurrentPage(1);
                   }}
                 ></Link>
                 {tab}
@@ -102,7 +103,7 @@ const Sidebar = () => {
                     selectedCategory === tab && "text-orange-500"
                   }`}
                   key={index}
-                  onClick={() => {}}
+                  onClick={() => setCurrentPage(1)}
                 >
                   <Link
                     className="absolute inset-0"

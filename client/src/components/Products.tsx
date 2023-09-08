@@ -18,7 +18,9 @@ const Products = ({ selectedProduct, setSelectedProduct }: propType) => {
 
   const { products } = useAppSelector((state) => state.Products);
 
-  const { selectedCategory, setSelectedCategory } = useCombinedContext();
+  const { selectedCategory, setSelectedCategory, currentPage, setCurrentPage } = useCombinedContext();
+  
+  const [postsPerPage, _setPostsPerPage] = useState<number>(20);
 
   const filterByCategory = (products: data[] | null, category: string) => {
     return products
@@ -45,9 +47,6 @@ const Products = ({ selectedProduct, setSelectedProduct }: propType) => {
 
   const [activeTab, setActiveTab] = useState(tabs[0].id);
 
-  // for pagination
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [postsPerPage, _setPostsPerPage] = useState<number>(20);
 
   // get all posts to show on single page
   const indexOfLastPost = currentPage * postsPerPage;
@@ -87,7 +86,14 @@ const Products = ({ selectedProduct, setSelectedProduct }: propType) => {
         break;
       case "Cheap":
         let cheap = totalProducts
-          ? totalProducts.filter((product) => product.price < 80)
+          ? totalProducts.filter((product) => {
+            switch (selectedCategory) {
+              case 'Tv': return product.price < 200
+              case 'Mobile': return product.price < 300
+              case 'Audio' : return product.price < 100
+              default: return product.price < 200;
+            }
+          })
           : null;
         setFilteredProducts(cheap);
         break;

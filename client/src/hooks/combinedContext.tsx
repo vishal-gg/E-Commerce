@@ -8,6 +8,8 @@ type CombinedContextType = {
   setSelectedCategory: React.Dispatch<React.SetStateAction<string | null>>;
   selectedProduct: data | null;
   setSelectedProduct: React.Dispatch<React.SetStateAction<data | null>>;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const CombinedContext = createContext<CombinedContextType | undefined>(
@@ -26,6 +28,8 @@ export const CombinedProvider = ({ children }: { children: ReactNode }) => {
   const [activeSignInModel, setActiveSignInModel] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<data | null>(null);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
 
   return (
     <CombinedContext.Provider 
@@ -35,7 +39,9 @@ export const CombinedProvider = ({ children }: { children: ReactNode }) => {
         selectedCategory, 
         setSelectedCategory, 
         selectedProduct, 
-        setSelectedProduct 
+        setSelectedProduct,
+        currentPage,
+        setCurrentPage
       }}>
       {children}
     </CombinedContext.Provider>
