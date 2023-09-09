@@ -116,7 +116,7 @@ const Home = () => {
             <div className="flex-1 max-h-full px-2 rounded-xl md:block hidden">
               <div className="grid grid-cols-2 gap-3 justify-between h-full">
                 {productsOnSale
-                  ? productsOnSale.slice(0, 4).map((product) => (
+                  ? productsOnSale.slice(3, 7).map((product) => (
                       <div
                         key={product._id}
                         className="flex gap-3 xl:flex-row flex-col items-center overflow-hidden cursor-pointer group"

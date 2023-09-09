@@ -91,6 +91,7 @@ const Products = ({ selectedProduct, setSelectedProduct }: propType) => {
               case 'Tv': return product.price < 200
               case 'Mobile': return product.price < 300
               case 'Audio' : return product.price < 100
+              case 'Laptop' : return product.price < 500
               default: return product.price < 200;
             }
           })
