@@ -20,7 +20,7 @@ const Products = ({ selectedProduct, setSelectedProduct }: propType) => {
 
   const { selectedCategory, setSelectedCategory, currentPage, setCurrentPage } = useCombinedContext();
   
-  const [postsPerPage, _setPostsPerPage] = useState<number>(20);
+  const [postsPerPage, _setPostsPerPage] = useState<number>(30);
 
   const filterByCategory = (products: data[] | null, category: string) => {
     return products

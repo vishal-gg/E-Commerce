@@ -7,10 +7,11 @@ import "swiper/css/pagination";
 
 const Carousel = () => {
   const slides = [
-    "https://swiperjs.com/demos/images/nature-1.jpg",
-    "https://swiperjs.com/demos/images/nature-2.jpg",
-    "https://swiperjs.com/demos/images/nature-3.jpg",
-    "https://swiperjs.com/demos/images/nature-4.jpg",
+    "https://img.freepik.com/free-photo/big-sale-discounts-products_23-2150336669.jpg",
+    "https://img.freepik.com/premium-psd/gaming-laptop-sale-promotion-banner_252779-743.jpg",
+    "https://img.freepik.com/premium-psd/home-appliances-social-media-square-banner-template_141378-75.jpg",
+    "https://img.freepik.com/free-psd/sales-discount-facebook-template_23-2149959351.jpg",
+    "https://img.freepik.com/free-psd/futuristic-cyber-monday-banner-template_23-2149117343.jpg"
   ];
 
   return (

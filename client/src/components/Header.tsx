@@ -7,7 +7,7 @@ import { AnimatePresence, Variants } from "framer-motion";
 import { motion } from "framer-motion";
 import LoginScreen from "./Login";
 import { toast } from "react-hot-toast";
-import {useCombinedContext} from '../hooks/combinedContext';
+import { useCombinedContext } from "../hooks/combinedContext";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -22,23 +22,24 @@ const Header = () => {
   const [notifyOpen, setNotifyOpen] = useState(false);
   const [userDrawerOpen, setUserDrawerOpen] = useState(false);
   const [closeOnBlur, setCloseOnBlur] = useState(true);
-  const {activeSignInModel, setActiveSignInModel, setSelectedProduct} = useCombinedContext();
-  const [themePreference, setThemePreference] = useState(()=>{
-    const selectedTheme = localStorage.getItem('themePreference')
-    return selectedTheme ? selectedTheme  : 'light';
+  const { activeSignInModel, setActiveSignInModel, setSelectedProduct } =
+    useCombinedContext();
+  const [themePreference, setThemePreference] = useState(() => {
+    const selectedTheme = localStorage.getItem("themePreference");
+    return selectedTheme ? selectedTheme : "light";
   });
 
   const handleThemePreference = () => {
     setThemePreference((prev: string) => {
-      if(prev === 'light') {
-        localStorage.setItem('themePreference', 'dark')
-        return 'dark'
+      if (prev === "light") {
+        localStorage.setItem("themePreference", "dark");
+        return "dark";
       } else {
-        localStorage.setItem('themePreference', 'light')
-        return 'light'
+        localStorage.setItem("themePreference", "light");
+        return "light";
       }
-    })
-  }
+    });
+  };
 
   const searchedProduct = useMemo(() => {
     if (query.trim() === "") return [];
@@ -68,11 +69,12 @@ const Header = () => {
     return () => toast.dismiss();
   }, [loading, error]);
 
-
-  useEffect(()=> {
-    const html = document.querySelector('html')
-    themePreference === 'dark' ? html?.setAttribute('class', 'dark') : html?.setAttribute('class', 'light')
-  }, [themePreference])
+  useEffect(() => {
+    const html = document.querySelector("html");
+    themePreference === "dark"
+      ? html?.setAttribute("class", "dark")
+      : html?.setAttribute("class", "light");
+  }, [themePreference]);
 
   return (
     <header
@@ -81,9 +83,7 @@ const Header = () => {
     >
       <div className="flex justify-between w-[min(100%-6rem,1380px)] mx-auto h-[70%]">
         <div className="flex items-end gap-1 text-sm mb-2">
-          <span className="w-8 h-8" 
-          onClick={() => navigate('/')}
-          >
+          <span className="w-8 h-8" onClick={() => navigate("/")}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44.36 48.82">
               <g
                 data-name="Layer 2"
@@ -120,7 +120,6 @@ const Header = () => {
             </svg>
           </span>
           <span>eShop</span>
-          <span onClick={handleThemePreference} className="text-sm font-semibold">{themePreference}</span>
         </div>
         <div
           className="w-[55%] flex relative 378:mx-6 mx-2"
@@ -352,19 +351,38 @@ const Header = () => {
                   <p className="-mt-5">empty</p>
                 </motion.li>
               )}
+              <div
+                onClick={handleThemePreference}
+                className={`absolute bottom-[14px] left-3 w-10 h-5 rounded-3xl shadow-inner cursor-pointer flex ${
+                  themePreference === "light"
+                    ? "justify-start bg-white"
+                    : "justify-end bg-slate-800"
+                } items-center`}
+              >
+                <motion.span
+                  transition={{ type: "spring", duration: 0.5 }}
+                  layoutId="toggleBtn"
+                  style={{ aspectRatio: 1 }}
+                  className={`h-full ${
+                    themePreference === "light" ? "bg-slate-800" : "bg-gray-300"
+                  } rounded-full shadow-inner`}
+                ></motion.span>
+              </div>
               {notifications.length > 0 ? (
                 <motion.button
-                  onClick={() => {
-                    setNotifications([]);
-                    setTimeout(() => {
-                      setNotifyOpen(false);
-                    }, 1000);
-                  }}
                   variants={itemVariants}
                   className="text-right py-2 w-full mb-2"
                 >
-                  <span className="text-xs font-medium bg-slate-800 dark:bg-red-500 py-[6px] px-2 mr-5 rounded-sm text-white">
-                    dismiss
+                  <span
+                    onClick={() => {
+                      setNotifications([]);
+                      setTimeout(() => {
+                        setNotifyOpen(false);
+                      }, 1000);
+                    }}
+                    className="text-xs font-medium bg-slate-800 dark:bg-red-500 py-[6px] px-2 mr-5 rounded-sm text-white"
+                  >
+                    Dismiss
                   </span>
                 </motion.button>
               ) : null}
