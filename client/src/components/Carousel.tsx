@@ -1,17 +1,32 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { useCombinedContext } from "../hooks/combinedContext";
+import {Link} from 'react-scroll';
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const Carousel = () => {
+  const { setSelectedCategory } = useCombinedContext();
+
   const slides = [
-    "https://img.freepik.com/free-photo/big-sale-discounts-products_23-2150336669.jpg",
-    "https://img.freepik.com/premium-psd/gaming-laptop-sale-promotion-banner_252779-743.jpg",
-    "https://img.freepik.com/premium-psd/home-appliances-social-media-square-banner-template_141378-75.jpg",
-    "https://img.freepik.com/free-psd/sales-discount-facebook-template_23-2149959351.jpg",
-    "https://img.freepik.com/free-psd/futuristic-cyber-monday-banner-template_23-2149117343.jpg"
+    {
+      href: "https://img.freepik.com/free-photo/big-sale-discounts-products_23-2150336669.jpg",
+      category: "Audio",
+    },
+    {
+      href: "https://img.freepik.com/premium-psd/gaming-laptop-sale-promotion-banner_252779-743.jpg",
+      category: "Laptop",
+    },
+    {
+      href: "https://img.freepik.com/free-psd/black-friday-super-sale-web-banner-template_120329-2158.jpg",
+      category: "Appliances",
+    },
+    {
+      href: "https://img.freepik.com/premium-psd/smart-phone-sale-promotion-black-friday-sale-web-banner-template_179771-192.jpg",
+      category: "Mobile",
+    },
   ];
 
   return (
@@ -28,13 +43,21 @@ const Carousel = () => {
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         modules={[Navigation, Pagination, Autoplay]}
       >
-        {slides.map((img, i) => (
+        {slides.map((item, i) => (
           <SwiperSlide key={i}>
-            <img
-              src={img}
-              alt="404"
-              className="selection:bg-none w-full h-full object-cover bg-gray-300"
-            />
+            <Link
+              to="product_list"
+              smooth
+              duration={300}
+              offset={-90}
+              onClick={() => setSelectedCategory(item.category)}
+            >
+              <img
+                src={item.href}
+                alt="404"
+                className="selection:bg-none w-full h-full object-cover bg-gray-300 cursor-pointer"
+              />
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

@@ -2,7 +2,7 @@ import { useAppSelector, useAppDispatch } from "../types/storeType";
 import { logout } from "../features/authSlice";
 import { useNavigate } from "react-router-dom";
 import { clearAllCartItems } from "../features/cartSlice";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { AnimatePresence, Variants } from "framer-motion";
 import { motion } from "framer-motion";
 import LoginScreen from "./Login";
@@ -21,7 +21,6 @@ const Header = () => {
   const [activeModel, setActiveModel] = useState(false);
   const [notifyOpen, setNotifyOpen] = useState(false);
   const [userDrawerOpen, setUserDrawerOpen] = useState(false);
-  const [closeOnBlur, setCloseOnBlur] = useState(true);
   const { activeSignInModel, setActiveSignInModel, setSelectedProduct } =
     useCombinedContext();
   const [themePreference, setThemePreference] = useState(() => {
@@ -38,7 +37,7 @@ const Header = () => {
         localStorage.setItem("themePreference", "light");
         return "light";
       }
-    });
+    })
   };
 
   const searchedProduct = useMemo(() => {
@@ -76,6 +75,24 @@ const Header = () => {
       : html?.setAttribute("class", "light");
   }, [themePreference]);
 
+
+  const notificationDrawer = useRef<HTMLDivElement>(null);
+  const notificationIcon = useRef<HTMLButtonElement>(null);
+
+  const handleNoficationDrawerClosing = (e: any) => {
+    if(notificationIcon.current?.contains(e.target)) return;
+    if(notificationDrawer.current) {
+      notificationDrawer.current.contains(e.target) ? null : setNotifyOpen(false)
+    }
+  }
+
+  useEffect(()=> {
+    document.addEventListener('click', handleNoficationDrawerClosing)
+    return () => {
+      document.removeEventListener('click', handleNoficationDrawerClosing)
+    }
+  }, [])
+
   return (
     <header
       onClick={() => setActiveModel(false)}
@@ -83,7 +100,7 @@ const Header = () => {
     >
       <div className="flex justify-between w-[min(100%-6rem,1380px)] mx-auto h-[70%]">
         <div className="flex items-end gap-1 text-sm mb-2">
-          <span className="w-8 h-8" onClick={() => navigate("/")}>
+          <span className="w-8 h-8 cursor-pointer" onClick={() => navigate("/")}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44.36 48.82">
               <g
                 data-name="Layer 2"
@@ -232,12 +249,11 @@ const Header = () => {
           )}
         </AnimatePresence>
         <div className="flex items-center gap-4 sm:gap-10 relative">
-          <motion.div
+          <motion.button
+            ref={notificationIcon}
             className="relative cursor-pointer"
-            tabIndex={0}
             whileTap={{ scale: 0.85 }}
-            onClick={() => setNotifyOpen(!notifyOpen)}
-            onBlur={() => closeOnBlur && setNotifyOpen(false)}
+            onClick={() => setNotifyOpen(prev => !prev)}
           >
             <motion.svg
               className="h-6 w-6 outline-none pointer-events-none"
@@ -264,10 +280,9 @@ const Header = () => {
             {notifications.length > 0 && (
               <span className="bg-red-500 absolute right-[3px] top-1 h-[6px] w-[6px] rounded-full"></span>
             )}
-          </motion.div>
+          </motion.button>
           <motion.div
-            onMouseEnter={() => setCloseOnBlur(false)}
-            onMouseLeave={() => setCloseOnBlur(true)}
+            ref={notificationDrawer}
             layout
             className={`absolute -left-24 top-[122%] backdrop-blur-md bg-black/5 dark:bg-black/40 overflow-hidden shadow-md w-[150%] rounded-b-sm selection:bg-none`}
             initial={false}
@@ -388,7 +403,7 @@ const Header = () => {
               ) : null}
             </motion.ul>
           </motion.div>
-          <motion.span
+          <motion.button
             whileTap={{ scale: 0.85 }}
             onClick={() => navigate("/cart")}
             className="relative"
@@ -421,13 +436,12 @@ const Header = () => {
                 </motion.span>
               )}
             </AnimatePresence>
-          </motion.span>
-          <motion.div
+          </motion.button>
+          <motion.button
             className="relative cursor-pointer"
-            tabIndex={0}
             whileTap={{ scale: 0.85 }}
             onClick={() => setUserDrawerOpen((prev) => !prev)}
-            onBlur={() => closeOnBlur && setUserDrawerOpen(false)}
+            onBlur={() => setUserDrawerOpen(false)}
           >
             <svg
               className="h-6 w-6 cursor-pointer"
@@ -459,10 +473,8 @@ const Header = () => {
             {userInfo && (
               <span className="w-[5px] h-[5px] bg-green-500 rounded-full inline-block absolute top-1 -right-[2px]"></span>
             )}
-          </motion.div>
+          </motion.button>
           <motion.div
-            onMouseEnter={() => setCloseOnBlur(false)}
-            onMouseLeave={() => setCloseOnBlur(true)}
             layout
             className={`absolute left-8 top-[122%] backdrop-blur-md bg-black/5 dark:hover:bg-black/40 overflow-hidden shadow-md w-full rounded-b-sm selection:bg-none`}
             initial={false}

@@ -139,7 +139,6 @@ const ProductDetails = ({ selectedProduct, setSelectedProduct }: propsType) => {
             className="w-1/2 max-h-full object-contain mr-auto flex-1 min-w-[50%] max-[1300px]:mx-auto"
             draggable={false}
           />
-          <hr className="bg-gradient-to-b from-transparent dark:via-transparent via-zinc-300 to-transparent h-full w-[1px] hidden sm:block" />
           <motion.div
           variants={{hidden: {opacity: 0, scale: .99}, show: {opacity: 1, scale: 1}}}
           initial="hidden"
@@ -212,9 +211,7 @@ const ProductDetails = ({ selectedProduct, setSelectedProduct }: propsType) => {
                     key="AddToCart"
                     exit={{rotateX: 90, opacity: 0, scale: .9}}
                     transition={{duration: .1, ease: 'easeInOut'}}
-                      className={`p-1 bg-[#3F4E4F] hover:bg-[#2C3639] dark:bg-slate-800 dark:hover:bg-slate-900 ${
-                        ifItemExistsOnCart && "bg-blue-600"
-                      } transition-colors flex items-center gap-1 text-white px-3 text-sm rounded-full shadow-md absolute inset-0`}
+                      className={`p-1 bg-[#3F4E4F] hover:bg-[#2C3639] dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors flex items-center gap-1 text-white px-3 text-sm rounded-full shadow-md absolute inset-0`}
                       onClick={() => {
                         handleProductDispatch(selectedProduct);
                         toast.success("added to cart");
@@ -254,7 +251,7 @@ const ProductDetails = ({ selectedProduct, setSelectedProduct }: propsType) => {
                     animate={{rotateX: 0, opacity: 1, scale: 1}}
                     transition={{duration: .1, delay: .1, ease: 'easeInOut'}}
                     key="GoToCart"
-                      className={`p-1 bg-[#5c5470] hover:bg-[#352F44] dark:bg-rose-600 transition-colors flex items-center gap-1 text-white px-3 text-sm rounded-full shadow-md absolute inset-0`}
+                      className={`p-1 bg-rose-500 hover:bg-rose-600 transition-colors flex items-center gap-1 text-white px-3 text-sm rounded-full shadow-md absolute inset-0`}
                       onClick={() => {
                         navigate("/cart");
                         isCartPage && setSelectedProduct(null);

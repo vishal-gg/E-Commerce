@@ -248,7 +248,7 @@ const Cart = () => {
                     className="bg-white dark:bg-black/20 dark:text-white shadow-md mb-3 flex max-[1020px]:flex-col gap-3 py-3 px-5"
                   >
                     <div
-                      className="h-[200px] w-[200px] min-h-fit min-w-fit cursor-pointer"
+                      className="min-h-[200px] min-w-[200px] max-h-[200px] max-w-[200px] cursor-pointer"
                       onClick={() => setSelectedProduct(cartItem.product)}
                     >
                       <img
