@@ -441,7 +441,7 @@ const Header = () => {
             className="relative cursor-pointer"
             whileTap={{ scale: 0.85 }}
             onClick={() => setUserDrawerOpen((prev) => !prev)}
-            onBlur={() => setUserDrawerOpen(false)}
+            onBlur={() => setTimeout(()=>setUserDrawerOpen(false),1000)}
           >
             <svg
               className="h-6 w-6 cursor-pointer"

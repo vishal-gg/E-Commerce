@@ -1,14 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { useCombinedContext } from "../hooks/combinedContext";
-import {Link} from 'react-scroll';
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const Carousel = () => {
-  const { setSelectedCategory } = useCombinedContext();
 
   const slides = [
     {
@@ -45,19 +42,19 @@ const Carousel = () => {
       >
         {slides.map((item, i) => (
           <SwiperSlide key={i}>
-            <Link
-              to="product_list"
-              smooth
-              duration={300}
-              offset={-90}
-              onClick={() => setSelectedCategory(item.category)}
+            <span
+              // to="product_list"
+              // smooth
+              // duration={300}
+              // offset={-90}
+              // onClick={() => setSelectedCategory(item.category)}
             >
               <img
                 src={item.href}
                 alt="404"
                 className="selection:bg-none w-full h-full object-cover bg-gray-300 cursor-pointer"
               />
-            </Link>
+            </span>
           </SwiperSlide>
         ))}
       </Swiper>

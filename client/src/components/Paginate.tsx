@@ -36,7 +36,7 @@ function Paginate({
           <button
             className={`${
               currentPage === 1 && "opacity-0"
-            } text-sm font-medium mr-8 px-3 py-1 outline outline-[1px] outline-black/20 hover:outline-black dark:hover:outline-white/50 dark:outline-white/20 rounded-[4px] group relative`}
+            } text-sm font-medium mr-8 max-[578px]:mr-4 px-3 py-1 outline outline-[1px] outline-black/20 hover:outline-black dark:hover:outline-white/50 dark:outline-white/20 rounded-[4px] group relative`}
             disabled={currentPage === 1}
           >
             <svg
@@ -51,7 +51,7 @@ function Paginate({
                 clipRule="evenodd"
               />
             </svg>
-            Previous
+            <span className="max-[578px]:hidden">Previous</span>
             <Link
               onClick={() => setCurrentPage((prev) => prev - 1)}
               className='absolute inset-0'
@@ -78,10 +78,10 @@ function Paginate({
           <button
             className={`${
               currentPage === pageNumbers.length && "opacity-0"
-            } text-sm font-medium ml-8 px-5 py-1 outline outline-[1px] outline-black/20 hover:outline-black dark:hover:outline-white/50 dark:outline-white/20 rounded-[4px] group relative`}
+            } text-sm font-medium ml-8 max-[578px]:ml-4 px-5 py-1 outline outline-[1px] outline-black/20 hover:outline-black dark:hover:outline-white/50 dark:outline-white/20 rounded-[4px] group relative`}
             disabled={currentPage === pageNumbers.length}
             >
-            Next
+            <span className="max-[578px]:hidden">Next</span>
             <Link
               onClick={() => setCurrentPage((prev) => prev + 1)}
               className='absolute inset-0'

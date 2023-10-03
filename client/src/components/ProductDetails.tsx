@@ -100,11 +100,11 @@ const ProductDetails = ({ selectedProduct, setSelectedProduct }: propsType) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="bg-black/50 backdrop-blur-sm fixed inset-0 z-50 w-full"
+      className="bg-black/50 backdrop-blur-sm fixed inset-0 z-50 w-full max-[1300px]:bg-black/0"
       onClick={() => setSelectedProduct(null)}
     >
       <motion.div
-        className="fixed inset-40 max-[1300px]:left-20 max-[1300px]:right-20 top-5 bottom-5 min-[1300px]:bottom-16 min-[1300px]:top-16 backdrop-blur-md rounded-2xl shadow-md max-[1300px]:overflow-y-scroll dark:text-white bg-white dark:bg-gray-700 productDetailScrollBar"
+        className="fixed inset-40 max-[1300px]:left-0 max-[1300px]:right-0 top-0 bottom-0 min-[1300px]:bottom-16 min-[1300px]:top-16 backdrop-blur-md rounded-2xl max-[1300px]:rounded-none shadow-md max-[1300px]:overflow-y-scroll dark:text-white bg-white dark:bg-gray-700 productDetailScrollBar"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0 }}
@@ -112,7 +112,7 @@ const ProductDetails = ({ selectedProduct, setSelectedProduct }: propsType) => {
         onClick={(e) => e.stopPropagation()}
       >
         <span
-          className="absolute top-3 right-3 cursor-pointer hover:bg-red-500 text-red-500 hover:text-white transition-colors rounded-sm px-1"
+          className="absolute top-7 right-5 cursor-pointer hover:bg-red-500 text-red-500 hover:text-white transition-colors rounded-sm px-1"
           onClick={() => setSelectedProduct(null)}
         >
           <svg
@@ -121,7 +121,7 @@ const ProductDetails = ({ selectedProduct, setSelectedProduct }: propsType) => {
             viewBox="0 0 24 24"
             strokeWidth={2}
             stroke="currentColor"
-            className="w-6 h-6"
+            className="w-8 h-8"
           >
             <path
               strokeLinecap="round"
@@ -204,7 +204,7 @@ const ProductDetails = ({ selectedProduct, setSelectedProduct }: propsType) => {
               </span>
             </div>
             <div className="flex gap-3 w-[100%] xl:w-[60%]">
-              <div className="w-full lg:w-[60%] relative h-8">
+              <div className="w-full lg:w-[60%] mx-auto relative h-8">
                 <AnimatePresence>
                   {!ifItemExistsOnCart ? (
                     <motion.button
