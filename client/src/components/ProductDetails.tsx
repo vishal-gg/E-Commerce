@@ -204,7 +204,7 @@ const ProductDetails = ({ selectedProduct, setSelectedProduct }: propsType) => {
               </span>
             </div>
             <div className="flex gap-3 w-[100%] xl:w-[60%]">
-              <div className="w-full lg:w-[60%] mx-auto relative h-8">
+              <div className="w-full lg:w-[60%] max-1300:mx-auto relative h-8">
                 <AnimatePresence>
                   {!ifItemExistsOnCart ? (
                     <motion.button
