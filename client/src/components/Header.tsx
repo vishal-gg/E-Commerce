@@ -136,6 +136,7 @@ const Header = () => {
               </g>
             </svg>
           </span>
+            <span className="opacity-0 pointer-events-none">eShop</span>
         </div>
         <div
           className="w-[55%] flex relative 378:mx-6 mx-2"
