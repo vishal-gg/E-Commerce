@@ -112,7 +112,7 @@ const ProductDetails = ({ selectedProduct, setSelectedProduct }: propsType) => {
         onClick={(e) => e.stopPropagation()}
       >
         <span
-          className="absolute top-7 right-5 cursor-pointer hover:bg-red-500 text-red-500 hover:text-white transition-colors rounded-sm px-1"
+          className="absolute top-3 right-3 cursor-pointer hover:bg-red-500 text-red-500 hover:text-white transition-colors rounded-sm px-1"
           onClick={() => setSelectedProduct(null)}
         >
           <svg
