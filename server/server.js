@@ -23,9 +23,10 @@ connectDb()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cookieParser())
-app.use(cors({
-    origin: ["http://localhost:5173", "https://snapstore.vercel.app", `${process.env.ADMIN_LOGIN}`]
-}));
+// app.use(cors({
+//     origin: ["http://localhost:5173", "https://snapstore.vercel.app", `${process.env.ADMIN_LOGIN}`]
+// }));
+app.use(cors());
   
 // Routes
 app.get("/", (req, res) => {
