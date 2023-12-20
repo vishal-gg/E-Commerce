@@ -35,13 +35,13 @@ check it out in action simply [click here.](https://snapstore.vercel.app)
 11. Uuid
 
 ## Features ✨
-🛒 Cart system with Redux Toolkit
-💳 Payment Gateway with Stripe
-🔐 User Authentication with JWT
-🛍️ Each User's Unique Cart Management
-🔍 Filtering & Searching for Products
-📖 Pagination
-🌙 Dark mode support
+1. 🛒 Cart system with Redux Toolkit 
+2. 💳 Payment Gateway with Stripe
+3. 🔐 User Authentication with JWT
+4. 🛍️ Each User's Unique Cart Management
+5. 🔍 Filtering & Searching for Products
+6. 📖 Pagination
+7. 🌙 Dark mode support
 
 ## API Integration 🔗
 The API for this project is my own creation. You're welcome to use and deploy it—it's CORS policy-ready. To access the API [click here.](https://e-commerce-serverside.vercel.app/get)
